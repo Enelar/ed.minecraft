@@ -1,0 +1,3 @@
+[submodule "ed"]
+	path = ed
+	url = https://github.com/Enelar/ed
