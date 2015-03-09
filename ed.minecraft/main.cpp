@@ -63,34 +63,40 @@ auto main()
       auto available = client->sock.available();
       if (required > available)
         continue;
+
       required = 0;
 
-      vector<unsigned char> tempbuf(available);
-      read(client->sock, boost::asio::buffer(tempbuf));
-
-
-      int oldsize = buffer.size();
-      buffer.reserve(oldsize + available);
-      for (auto ch : tempbuf)
-        buffer.push_back(ch);
-
-      int res;
-      try
+      if (available > 0)
       {
-        res = proto.OnMessage(buffer);
-      }
-      catch (protocol::more_bytes &e)
-      {
-        res = -e.amount;
+        vector<unsigned char> tempbuf(available);
+        read(client->sock, boost::asio::buffer(tempbuf));
+
+        int oldsize = buffer.size();
+        buffer.reserve(oldsize + available);
+        for (auto ch : tempbuf)
+          buffer.push_back(ch);
       }
 
-      if (res < 0)
+      if (buffer.size() > 0)
       {
-        required -= res;
-        continue;
+        int res;
+        try
+        {
+          res = proto.OnMessage(buffer);
+        }
+        catch (protocol::more_bytes &e)
+        {
+          res = -e.amount;
+        }
+
+        if (res < 0)
+        {
+          required -= res;
+          continue;
+        }
+        vector<unsigned char> tmpswap(buffer.begin() + res, buffer.end());
+        tmpswap.swap(buffer);
       }
-      vector<unsigned char> tmpswap(buffer.begin() + res, buffer.end());
-      tmpswap.swap(buffer);
 
       if (!proto.answers.size())
         continue;
