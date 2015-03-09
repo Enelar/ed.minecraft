@@ -84,6 +84,19 @@ int protocol::GetBigEndianInt(int size, packet_buf::const_iterator &it, packet_b
   return ret;
 }
 
+protocol::packet_buf protocol::SetBigEndianInt(int size, int value)
+{
+  packet_buf ret;
+
+  for (auto i = 0; i < size; i++)
+  {
+    ret.push_back(value & 0xFF);
+    value >>= 8;
+  }
+
+  return{ ret.rbegin(), ret.rend() };
+}
+
 protocol::packet_buf &protocol::Append(protocol::packet_buf &a, const protocol::packet_buf &b)
 {
   auto old_size = a.size();
