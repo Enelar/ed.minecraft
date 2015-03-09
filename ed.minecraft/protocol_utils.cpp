@@ -91,3 +91,10 @@ protocol::packet_buf &protocol::Append(protocol::packet_buf &a, const protocol::
   copy(b.begin(), b.end(), a.begin() + old_size);
   return a;
 }
+
+void protocol::Send(const packet_buf &mes)
+{
+  packet_buf buf = ComposeVarInt(mes.size());
+  Append(buf, mes);
+  answers.push_back(buf);
+}

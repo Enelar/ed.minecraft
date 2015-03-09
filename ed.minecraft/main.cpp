@@ -91,6 +91,14 @@ auto main()
       }
       vector<unsigned char> tmpswap(buffer.begin() + res, buffer.end());
       tmpswap.swap(buffer);
+
+      if (!proto.answers.size())
+        continue;
+
+      for (const auto &answer : proto.answers)
+      {
+        write(client->sock, boost::asio::buffer(answer));
+      }
     }
   }
   catch (boost::system::system_error &e)

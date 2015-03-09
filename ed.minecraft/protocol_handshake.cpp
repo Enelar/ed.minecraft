@@ -33,5 +33,5 @@ void protocol::DoHandshakeLogin(const packet_buf &buf)
   boost::uuids::uuid uuid = boost::uuids::random_generator()();
   Append(ret, ComposeString(boost::lexical_cast<string>(uuid)));
   Append(ret, ComposeString(nick));
-  answers.push_back(ret);
+  Send(ret);
 }
