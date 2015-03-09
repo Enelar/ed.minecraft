@@ -107,7 +107,14 @@ protocol::packet_buf &protocol::Append(protocol::packet_buf &a, const protocol::
 
 void protocol::Send(const packet_buf &mes)
 {
+  {
+    auto it = mes.begin();
+    int id = ParseVarInt(it, mes.end());
+    cout << "SEND " << id << " SIZE " << mes.size() << endl;
+  }
   packet_buf buf = ComposeVarInt(mes.size());
   Append(buf, mes);
+
+  HexShow(buf);
   answers.push_back(buf);
 }

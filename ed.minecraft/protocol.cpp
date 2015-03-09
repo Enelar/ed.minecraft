@@ -1,12 +1,17 @@
 #include "protocol.h"
 #include <iostream>
 
+char HalfByteToHex(unsigned char ch)
+{
+  char base = ch < 10 ? '0' : ('A' - 0xA);
+  return ch + base;
+}
+
 void HexShow(const vector<unsigned char> &mes)
 {
   auto ShowOne = [](unsigned char ch)
   {
-    char base = ch < 10 ? '0' : ('A' - 0xA);
-    std::cout << (const char)(ch + base);
+    std::cout << (const char)(HalfByteToHex(ch));
   };
 
   int i = 0;
@@ -15,7 +20,7 @@ void HexShow(const vector<unsigned char> &mes)
     ShowOne(ch >> 4);
     ShowOne(ch & 0xF);
     i++;
-    if (i & 3)
+    if (i & 7)
       std::cout << ' ';
     else
       std::cout << endl;

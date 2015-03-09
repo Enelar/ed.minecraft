@@ -20,7 +20,7 @@ construct_stream &construct_stream::AppendVarInt(varint var)
 
 construct_stream &construct_stream::Append(string var)
 {
-  ss << (varint)var.size();
+  AppendVarInt(var.size());
   ss << var;
   return *this;
 }

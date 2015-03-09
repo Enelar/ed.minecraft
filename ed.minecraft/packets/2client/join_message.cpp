@@ -11,7 +11,6 @@ join_game::operator vector<unsigned char>() const
   construct.AppendBigEndingInt(1, difficulty);
   construct.AppendBigEndingInt(1, maxPlayers);
   construct.Append(levelType);
-  construct.AppendBigEndingInt(1, reducedDebugInfo);
 
   return construct;
 }

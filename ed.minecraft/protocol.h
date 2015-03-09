@@ -48,3 +48,6 @@ struct protocol
   void Send(const packet_buf &);
 
 };
+
+void HexShow(const vector<unsigned char> &mes);
+char HalfByteToHex(unsigned char ch);

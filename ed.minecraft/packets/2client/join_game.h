@@ -16,7 +16,6 @@ namespace packets
       unsigned char difficulty;
       unsigned char maxPlayers;
       string levelType;
-      bool reducedDebugInfo;
 
       operator vector<unsigned char>() const;
     };

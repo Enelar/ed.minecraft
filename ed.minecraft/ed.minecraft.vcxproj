@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="packets\2client\join_game.h" />
+    <ClInclude Include="packets\bothway\keep_alive.h" />
     <ClInclude Include="packets\packet.h" />
     <ClInclude Include="protocol.h" />
   </ItemGroup>
