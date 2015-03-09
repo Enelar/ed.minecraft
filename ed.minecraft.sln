@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ed.minecraft", "ed.minecraft\ed.minecraft.vcxproj", "{3D377EF0-7025-4FB2-81D6-D0FD5C9DE95D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ed", "ed\ed\ed.vcxproj", "{F5C3461B-4886-4721-9ACF-8F84B915C347}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{3D377EF0-7025-4FB2-81D6-D0FD5C9DE95D}.Debug|Win32.Build.0 = Debug|Win32
 		{3D377EF0-7025-4FB2-81D6-D0FD5C9DE95D}.Release|Win32.ActiveCfg = Release|Win32
 		{3D377EF0-7025-4FB2-81D6-D0FD5C9DE95D}.Release|Win32.Build.0 = Release|Win32
+		{F5C3461B-4886-4721-9ACF-8F84B915C347}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F5C3461B-4886-4721-9ACF-8F84B915C347}.Debug|Win32.Build.0 = Debug|Win32
+		{F5C3461B-4886-4721-9ACF-8F84B915C347}.Release|Win32.ActiveCfg = Release|Win32
+		{F5C3461B-4886-4721-9ACF-8F84B915C347}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
