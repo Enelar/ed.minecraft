@@ -9,9 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Source Files\packets">
+      <UniqueIdentifier>{d20afcb0-4195-48f7-8a00-9dc749e26164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\packets\2client">
+      <UniqueIdentifier>{90632e50-7f46-4302-9420-b0d09025f14d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,10 +29,22 @@
     <ClCompile Include="protocol_handshake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="packets\packet.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="packets\2client\join_message.cpp">
+      <Filter>Source Files\packets\2client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protocol.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="packets\2client\join_game.h">
+      <Filter>Source Files\packets\2client</Filter>
+    </ClInclude>
+    <ClInclude Include="packets\packet.h">
+      <Filter>Source Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

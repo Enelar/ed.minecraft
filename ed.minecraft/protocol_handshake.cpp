@@ -34,4 +34,6 @@ void protocol::DoHandshakeLogin(const packet_buf &buf)
   Append(ret, ComposeString(boost::lexical_cast<string>(uuid)));
   Append(ret, ComposeString(nick));
   Send(ret);
+
+  STATE = RUNTIME;
 }

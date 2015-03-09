@@ -32,7 +32,7 @@ struct protocol
   packet_buf ComposeString(string);
 
   int GetBigEndianInt(int size, packet_buf::const_iterator &, packet_buf::const_iterator end);
-  packet_buf GetBigEndianInt(int size, int value);
+  packet_buf SetBigEndianInt(int size, int value);
 
   packet_buf &Append(packet_buf &, const packet_buf &);
 
