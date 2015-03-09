@@ -2,22 +2,29 @@
 using namespace boost::asio;
 using namespace std;
 
+io_service async_io, sync_io;
+
 struct active_connection
 {
   int id;
   ip::tcp::socket sock;
 
-};
+  active_connection()
+    : sock(sync_io)
+  {
 
-io_service async_io, sync_io;
+  }
+
+};
 
 #include <map>
 #include <memory>
 
 auto SyncAccept(ip::tcp::acceptor *accept)
 {
-  shared_ptr<active_connection> ret;
+  shared_ptr<active_connection> ret = make_shared<active_connection>();
   ip::tcp::endpoint endpoint;
+
   accept->accept(ret->sock, endpoint);
 
   return ret;
@@ -56,19 +63,27 @@ auto main()
       auto available = client->sock.available();
       if (required > available)
         continue;
+      required = 0;
 
       vector<unsigned char> tempbuf(available);
       read(client->sock, boost::asio::buffer(tempbuf));
 
-      if ((required -= available) < 0)
-        required = 0;
 
       int oldsize = buffer.size();
       buffer.reserve(oldsize + available);
       for (auto ch : tempbuf)
         buffer.push_back(ch);
 
-      auto res = proto.OnMessage(buffer);
+      int res;
+      try
+      {
+        res = proto.OnMessage(buffer);
+      }
+      catch (protocol::more_bytes &e)
+      {
+        res = -e.amount;
+      }
+
       if (res < 0)
       {
         required -= res;

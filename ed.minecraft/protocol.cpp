@@ -26,6 +26,7 @@ void HexShow(const vector<unsigned char> &mes)
 
 int protocol::OnMessage(const vector<unsigned char> &buf)
 {
+  HexShow(buf);
   auto it = buf.begin();
   auto size = ParseVarInt(it, buf.end());
 
@@ -43,12 +44,23 @@ int protocol::OnMessage(const vector<unsigned char> &buf)
 
 void protocol::OnChoppedMessage(const packet_buf &buf)
 {
-  HexShow(buf);
+  //HexShow(buf);
   auto it = buf.begin();
   int message_id = ParseVarInt(it, buf.end());
 
-  if (STATE == HANDSHAKE && message_id == 0)
-    DoHandshake({ it, buf.end() });
+  packet_buf message = { it, buf.end() };
+
+  switch (STATE)
+  {
+  case HANDSHAKE:
+    if (message_id == 0)
+      DoHandshake(message);
+    return;
+  case HANDSHAKE_LOGIN:
+    if (message_id == 0)
+      DoHandshakeLogin(message);
+    return;
+  }
 }
 
 int protocol::OnDecryptedMessage(int packet_id, const vector<unsigned char> &payload)
