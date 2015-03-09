@@ -43,6 +43,7 @@ struct protocol
 
   void DoHandshake(const packet_buf &);
   void DoHandshakeLogin(const packet_buf &);
+  void DoAfterLogin();
 
   void Send(const packet_buf &);
 

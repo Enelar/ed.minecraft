@@ -93,6 +93,7 @@
     <ClCompile Include="packets\2client\join_message.cpp" />
     <ClCompile Include="packets\packet.cpp" />
     <ClCompile Include="protocol.cpp" />
+    <ClCompile Include="protocol_after_login.cpp" />
     <ClCompile Include="protocol_handshake.cpp" />
     <ClCompile Include="protocol_utils.cpp" />
   </ItemGroup>

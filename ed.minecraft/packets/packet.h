@@ -28,7 +28,9 @@ namespace packets
     const int id;
     construct_stream BeginConstruct() const
     {
-      return{};
+      construct_stream ret;
+      ret.AppendVarInt(id);
+      return ret;
     }
 
     packet(int _id) : id(_id) {}

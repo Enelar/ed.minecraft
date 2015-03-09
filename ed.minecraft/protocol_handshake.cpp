@@ -36,4 +36,5 @@ void protocol::DoHandshakeLogin(const packet_buf &buf)
   Send(ret);
 
   STATE = RUNTIME;
+  DoAfterLogin();
 }

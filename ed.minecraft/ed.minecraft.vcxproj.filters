@@ -35,6 +35,9 @@
     <ClCompile Include="packets\2client\join_message.cpp">
       <Filter>Source Files\packets\2client</Filter>
     </ClCompile>
+    <ClCompile Include="protocol_after_login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protocol.h">
