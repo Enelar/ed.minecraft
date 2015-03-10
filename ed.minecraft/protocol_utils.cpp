@@ -131,6 +131,6 @@ void protocol::Send(const packet_buf &mes)
   packet_buf buf = ComposeVarInt(mes.size());
   Append(buf, mes);
 
-  HexShow(buf);
+  //HexShow(buf);
   answers.push_back(buf);
 }

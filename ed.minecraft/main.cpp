@@ -104,7 +104,9 @@ auto main()
       for (const auto &answer : proto.answers)
       {
         write(client->sock, boost::asio::buffer(answer));
+        this_thread::sleep_for(100ms);
       }
+      proto.answers.clear();
     }
   }
   catch (boost::system::system_error &e)

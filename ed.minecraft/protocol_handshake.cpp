@@ -28,30 +28,13 @@ void protocol::DoHandshakeLogin(const packet_buf &buf)
   string nick = ParseString(it, end);
   cout << "Nick: " << nick << endl;
 
-  // Answering kick
-  {
-    protocol::packet_buf ret = ComposeVarInt(0);
-    Append(ret, ComposeString("{\"text\": \"Hello world\"}"));
-    Send(ret);
-    return;
-  }
-
   // Answering login success
   protocol::packet_buf ret = ComposeVarInt(0x2); // Login success packet
   boost::uuids::uuid uuid = boost::uuids::random_generator()();
-
-  { // Compose UUID
-    Append(ret, ComposeVarInt(32));
-    for (auto ch : uuid)
-    {
-      ret.push_back(HalfByteToHex(ch >> 4));
-      ret.push_back(HalfByteToHex(ch & 15));
-    }
-    
-  }
+  Append(ret, ComposeString(boost::lexical_cast<string>(uuid)));
   Append(ret, ComposeString(nick)); // zero string
   Send(ret);
 
   STATE = RUNTIME;
-  //DoAfterLogin();
+  DoAfterLogin();
 }
