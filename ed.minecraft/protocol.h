@@ -27,9 +27,13 @@ struct protocol
   int             ParseVarInt(packet_buf::const_iterator &, packet_buf::const_iterator end);
   string          ParseString(packet_buf::const_iterator &, packet_buf::const_iterator end);
   unsigned short  ParseUShort(packet_buf::const_iterator &, packet_buf::const_iterator end);
+  float           ParseFloat(packet_buf::const_iterator &, packet_buf::const_iterator end);
+  double          ParseDouble(packet_buf::const_iterator &, packet_buf::const_iterator end);
 
   packet_buf ComposeVarInt(int);
   packet_buf ComposeString(string);
+  packet_buf ComposeFloat(float);
+  packet_buf ComposeDouble(double);
 
   int GetBigEndianInt(int size, packet_buf::const_iterator &, packet_buf::const_iterator end);
   packet_buf SetBigEndianInt(int size, int value);

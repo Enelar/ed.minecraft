@@ -97,6 +97,22 @@ protocol::packet_buf protocol::SetBigEndianInt(int size, int value)
   return{ ret.rbegin(), ret.rend() };
 }
 
+// Just moving bytes, according to
+// https://github.com/deoxxa/libmcnet/blob/master/src/write.c#L65-L85
+protocol::packet_buf protocol::ComposeFloat(float a)
+{
+  auto *p = (char *)&a;
+  packet_buf ret = {p, p + sizeof(a)};
+  return{ ret.rbegin(), ret.rend() };
+}
+
+protocol::packet_buf protocol::ComposeDouble(double a)
+{
+  auto *p = (char *)&a;
+  packet_buf ret = { p, p + sizeof(a) };
+  return{ ret.rbegin(), ret.rend() };
+}
+
 protocol::packet_buf &protocol::Append(protocol::packet_buf &a, const protocol::packet_buf &b)
 {
   auto old_size = a.size();
